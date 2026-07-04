@@ -31,7 +31,7 @@ export default function Signup() {
     }, [navigate]);
 
     return (
-       <div className="min-h-screen bg-bg text-white overflow-x-hidden">
+        <div className="min-h-screen bg-bg text-white overflow-x-hidden">
             {!isMobile ? <img
                 className=" w-[70px] sm:w-[80px] "
                 src={icon}
@@ -82,9 +82,9 @@ export default function Signup() {
                         sign up with your mobile number
                     </button>
                 </div>
-<footer className="mt-auto text-center mb-4">
-    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
-</footer>
+                <footer className="mt-auto text-center mb-4">
+                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                </footer>
             </main>
 
             {!isMobile && <footer className="px-4 py-7">
