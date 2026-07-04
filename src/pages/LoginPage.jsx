@@ -33,8 +33,6 @@ export default function Login() {
     return (
 
         <div className="min-h-screen bg-surface text-white overflow-x-hidden">
-            <main className="relative min-h-[calc(100vh-120px)] border-b border-[#494D53]/60 md:grid md:grid-cols-2">
-
                 {!isMobile ? <img
                     className="absolute left-4 top-4 z-20 w-[70px] sm:w-[80px]"
                     src={icon}
@@ -50,6 +48,8 @@ export default function Login() {
                         </div>
                     </header>
                 }
+            <main className="relative min-h-[calc(100vh-82.67px)] md:border-b md:border-[#494D53]/60 md:grid md:grid-cols-2">
+
 
                 <section className="hidden bg-bg md:flex md:flex-col md:items-center md:justify-center border-r border-[#494D53]/40 px-6 pt-24">
                     <div className="w-full max-w-[620px] text-center">

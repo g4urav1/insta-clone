@@ -3,6 +3,8 @@ import Parent from "./pages/parent";
 import Home from "./pages/Home";
 import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
+import SignupAuth from "./pages/SignupAuth";
+import SetupAcc from "./pages/SetupAcc";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -17,7 +19,9 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "menu", element: <Menu /> },
       { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> }
+      { path: "signup", element: <Signup /> },
+      { path: "auth", element: <SignupAuth /> },
+      { path: "account_setup", element: <SetupAcc /> }
     ]
   }
 ]);
