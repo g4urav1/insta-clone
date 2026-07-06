@@ -146,15 +146,15 @@ export default function Menu() {
                             </button>
                             </div>
 
-                            <p className="flex gap-3 mb-10 md:mb-20">
-                                <a className="text-secondary" href="#">
+                            <div className="flex gap-3 mb-10 md:mb-20">
+                                <p className="text-secondary" onClick={()=>{navigate("/login")}}>
                                     Login
-                                </a>
+                                </p>
                                 or
-                                <a className="text-secondary" href="#">
+                                <p className="text-secondary" onClick={()=>{navigate("/signup")}}>
                                     Sign up
-                                </a>
-                            </p>
+                                </p>
+                            </div>
                         <div className="w-[100%] flex justify-center items-center mt-10 gap-1"><img src={meta} alt="" /><span>Meta</span></div>
                         </div>
                     </main>

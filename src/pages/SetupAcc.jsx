@@ -44,6 +44,8 @@ export default function setupAcc() {
         };
     }, [navigate]);
 
+
+
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
             {!isMobile ? <img
@@ -94,7 +96,7 @@ export default function setupAcc() {
 
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>}
 
@@ -149,7 +151,7 @@ export default function setupAcc() {
 
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>}
 
@@ -186,7 +188,7 @@ export default function setupAcc() {
 
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>}
 
@@ -222,7 +224,7 @@ export default function setupAcc() {
 
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>}
 
@@ -248,7 +250,7 @@ export default function setupAcc() {
 
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>}
 

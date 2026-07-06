@@ -30,6 +30,11 @@ export default function Signup() {
         };
     }, [navigate]);
 
+
+    function handleSignup() {
+        navigate("/auth")
+    }
+
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
             {!isMobile ? <img
@@ -72,6 +77,7 @@ export default function Signup() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{handleSignup()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -84,7 +90,7 @@ export default function Signup() {
                     </button>
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={()=>{navigate("/login")}} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>
 

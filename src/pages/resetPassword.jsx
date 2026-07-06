@@ -16,17 +16,14 @@ export default function ResetPass() {
     const { isMobile, setIsMobile } = useContext(MobileContext)
     const [dropdown, setDropdown] = useState(false)
 
-    function handleSubmit() {
-        setDropdown(true)
-    }
-
+    
     useEffect(() => {
         const checkScreenSize = () => {
             const width = window.innerWidth;
-
+            
             setIsMobile(width < 768);
         };
-
+        
         checkScreenSize();
 
         window.addEventListener("resize", checkScreenSize);
@@ -35,6 +32,16 @@ export default function ResetPass() {
             window.removeEventListener("resize", checkScreenSize);
         };
     }, [navigate]);
+    
+    
+    function handleSubmit() {
+        setDropdown(true)
+    }
+    
+    function handlePasswordChange() {
+        alert("Password has been changed")
+        navigate("/login")
+    }
 
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -48,7 +55,7 @@ export default function ResetPass() {
                         <img src={famora} alt="" />
                     </div>
                     <div className="flex gap-2 text-sm font-semibold ">
-                        <button>Log in</button>
+                        <button onClick={()=>{navigate("/login")}}>Log in</button>
                         <button className="bg-[#8B5CF6] rounded-xl px-2">Open app</button>
                     </div>
                 </header>
@@ -94,6 +101,7 @@ export default function ResetPass() {
                         a message with a link to help you log back in.</p>
                     <button
                         type="submit"
+                        onClick={() => { setDropdown(false) }} 
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         OK
@@ -125,6 +133,7 @@ export default function ResetPass() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{handlePasswordChange()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Continue

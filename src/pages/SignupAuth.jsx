@@ -84,7 +84,7 @@ export default function SignupAuth() {
                     </button>
                 </div>
                 <footer className="mt-auto text-center mb-4">
-                    <button className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    <button onClick={()=>{navigate("/login")}} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
                 </footer>
             </main>
 

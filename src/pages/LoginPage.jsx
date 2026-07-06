@@ -126,6 +126,7 @@ export default function Login() {
 
                             <button
                                 type="button"
+                                onClick={() => { navigate("/password/reset") }}
                                 className="w-full rounded-full py-3 text-base transition hover:bg-white/10"
                             >
                                 Forgot password?
@@ -149,6 +150,7 @@ export default function Login() {
 
                             <button
                                 type="button"
+                                onClick={() => { navigate("/signup") }}
                                 className="w-full rounded-full border border-primary py-3 text-base font-semibold text-primary transition hover:bg-white/10"
                             >
                                 Create new account
