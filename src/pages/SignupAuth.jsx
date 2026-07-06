@@ -29,6 +29,10 @@ export default function SignupAuth() {
         };
     }, [navigate]);
 
+    function verifyCode() {
+        navigate("/account_setup")
+    }
+
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
             {!isMobile ? <img
@@ -72,6 +76,7 @@ export default function SignupAuth() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{verifyCode()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next

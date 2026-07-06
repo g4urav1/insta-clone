@@ -22,8 +22,14 @@ export default function setupAcc() {
 
     const [birthday, setBirthday] = useState(today);
     const [error, setError] = useState("");
-    const navigate = useNavigate();
 
+    const [showPassword, setShowPassword] = useState(true)
+    const [showAge, setShowAge] = useState(false)
+    const [showName, setShowName] = useState(false)
+    const [showUserName, setShowUserName] = useState(false)
+    const [showTerms, setShowTerms] = useState(false)
+
+    const navigate = useNavigate();
 
 
     const { isMobile, setIsMobile } = useContext(MobileContext)
@@ -34,17 +40,29 @@ export default function setupAcc() {
 
             setIsMobile(width < 768);
         };
-
         checkScreenSize();
-
         window.addEventListener("resize", checkScreenSize);
-
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
     }, [navigate]);
-
-
+    
+function Age() {
+    setShowPassword(false)
+    setShowAge(true)
+}
+function Name() {
+    setShowAge(false)
+    setShowName(true)
+}
+function UserName() {
+    setShowName(false)
+    setShowUserName(true)
+}
+function Terms() {
+    setShowUserName(false)
+    setShowTerms(true)
+}
 
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -63,44 +81,47 @@ export default function setupAcc() {
                     </div>
                 </header>
             }
-            {false && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
-                <div className="p-4 space-y-3">
-                    <h1 className="text-2xl font-semibold">Create a password</h1>
-                    <p>
-                        Create a password with at least 6 letters or numbers.
-                        It should be something others can't guess.
-                    </p>
-                    <div className="relative mb-5 w-full">
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder=" "
-                            autoComplete="password"
-                            autoFocus
-                            className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
-                        />
 
-                        <label
-                            htmlFor="password"
-                            className="pointer-events-none absolute left-6 top-2 text-[14px] font-medium text-[#b8c4d4] transition-all duration-200 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[14px]"
+            {showPassword &&
+                <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
+                    <div className="p-4 space-y-3">
+                        <h1 className="text-2xl font-semibold">Create a password</h1>
+                        <p>
+                            Create a password with at least 6 letters or numbers.
+                            It should be something others can't guess.
+                        </p>
+                        <div className="relative mb-5 w-full">
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder=" "
+                                autoComplete="password"
+                                autoFocus
+                                className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
+                            />
+
+                            <label
+                                htmlFor="password"
+                                className="pointer-events-none absolute left-6 top-2 text-[14px] font-medium text-[#b8c4d4] transition-all duration-200 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[14px]"
+                            >
+                                Password
+                            </label>
+                        </div>
+                        <button
+                            type="submit"
+                            onClick={()=>{Age()}}
+                            className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                         >
-                            Password
-                        </label>
+                            Next
+                        </button>
+
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
-                    >
-                        Next
-                    </button>
+                    <footer className="mt-auto text-center mb-4">
+                        <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
+                    </footer>
+                </main>}
 
-                </div>
-                <footer className="mt-auto text-center mb-4">
-                    <button onClick={() => { navigate("/login") }} className="text-secondary hover:bg-white/10 px-2 py-1">I already have an account</button>
-                </footer>
-            </main>}
-
-            {false && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto justify-center items-center">
+            {showAge && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto justify-center items-center">
                 <div className="p-4 space-y-3">
                     <h1 className="text-2xl font-semibold">What's your birthday?</h1>
                     <p >
@@ -144,6 +165,7 @@ export default function setupAcc() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{Name()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -155,7 +177,7 @@ export default function setupAcc() {
                 </footer>
             </main>}
 
-            {false && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
+            {showName && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
                 <div className="p-4 space-y-3">
                     <h1 className="text-2xl font-semibold">What's your name?</h1>
                     <p>
@@ -181,6 +203,7 @@ export default function setupAcc() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{UserName()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -192,7 +215,7 @@ export default function setupAcc() {
                 </footer>
             </main>}
 
-            {false && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
+            {showUserName && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
                 <div className="p-4 space-y-3">
                     <h1 className="text-2xl font-semibold">Create a username</h1>
                     <p>
@@ -217,6 +240,7 @@ export default function setupAcc() {
                     </div>
                     <button
                         type="submit"
+                        onClick={()=>{Terms()}}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -228,7 +252,7 @@ export default function setupAcc() {
                 </footer>
             </main>}
 
-            {true && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
+            {showTerms && <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
                 <div className="p-4 space-y-3">
                     <h1 className="text-2xl font-semibold">Agree to Instagram's terms and policies
                     </h1>
