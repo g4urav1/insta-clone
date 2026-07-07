@@ -10,6 +10,16 @@
     color: var(--fm-text);
 }
 
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: gray;
+}
+
+.icon.active {
+  fill: white;
+}
+
 :root {
     --fm-bg: #080A12;
     --fm-surface: #11131F;
