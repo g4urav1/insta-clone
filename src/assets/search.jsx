@@ -33,7 +33,7 @@ export function SearchFill() {
       cy="10.5"
       r="6.5"
       stroke="#FFFFFF"
-      stroke-width="3"/>
+      stroke-width="2.5"/>
   <path
       d="M15.3 15.3L20 20"
       stroke="#FFFFFF"

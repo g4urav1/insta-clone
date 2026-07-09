@@ -58,8 +58,9 @@ export default function Home() {
                 <span>Messages</span>
               </a>
             </li>
-            <li>
-              <a href="#" className="flex">
+            <li onClick={()=>{setActive("search")}}>
+              <a href="#" className="flex items-center gap-2">
+               {active == "search" ? <SearchFill  />:<Search/>}
                 <span>Search</span>
               </a>
             </li>

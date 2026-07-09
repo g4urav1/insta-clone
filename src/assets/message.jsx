@@ -1,15 +1,15 @@
 export function Message() {
-  return (
-<svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="14 14 38 36"
-    width="24"
-    height="24"
-    fill="none"
->
-    <g transform="rotate(330 32 32)">
-        <path
-            d="
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="14 14 26 50"
+            width="24"
+            height="24"
+            fill="none"
+        >
+            <g transform="rotate(330 32 32)">
+                <path
+                    d="
             M17 17
             Q18 16 20 17
             L47 30
@@ -22,34 +22,34 @@ export function Message() {
             L16.5 19
             Q16 17 17 17
             Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linejoin="round"
-            stroke-linecap="round"
-        />
+                    stroke="currentColor"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                />
 
-        <path
-            d="M22 32L32 32"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-        />
-    </g>
-</svg>
-  )
+                <path
+                    d="M22 32L32 32"
+                    stroke="currentColor"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                />
+            </g>
+        </svg>
+    )
 }
 export function MessageFill() {
-  return (
- <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 64 64"
-    width="120"
-    height="120"
-    fill="none"
->
-    <g transform="rotate(330 32 32)">
-        <path
-            d="
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="14 14 26 50"
+            width="24"
+            height="24"
+            fill="none"
+        >
+            <g transform="rotate(330 32 32)">
+                <path
+                    d="
             M17 17
             Q18 16 20 17
             L47 30
@@ -62,20 +62,20 @@ export function MessageFill() {
             L16.5 19
             Q16 17 17 17
             Z"
-            stroke="currentColor"
-            fill="white"
-            stroke-width="2"
-            stroke-linejoin="round"
-            stroke-linecap="round"
-        />
+                    stroke="currentColor"
+                    fill="white"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                />
 
-        <path
-            d="M22 32L32 32"
-            stroke="black"
-            stroke-width="2"
-            stroke-linecap="round"
-        />
-    </g>
-</svg>
-  )
+                <path
+                    d="M22 32L32 32"
+                    stroke="black"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                />
+            </g>
+        </svg>
+    )
 }
