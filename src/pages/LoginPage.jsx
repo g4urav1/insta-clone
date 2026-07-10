@@ -4,8 +4,9 @@ import meta from "../assets/meta.svg"
 import famora from "../assets/famora.svg"
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { MobileContext } from "../context/context"
+import { Eye,EyeOff } from "lucide-react";
 
 export default function Login() {
     const year = new Date().getFullYear()
@@ -13,6 +14,7 @@ export default function Login() {
 
 
     const { isMobile, setIsMobile } = useContext(MobileContext)
+    const [showPassword, setShowPassword] = useState(false)
 
     function handleLogin() {
         navigate("/")
@@ -100,12 +102,14 @@ export default function Login() {
 
                         <div className="relative mb-6 w-full">
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 placeholder=" "
                                 autoComplete="current-password"
                                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"
                             />
+                            <div onClick={()=>{setShowPassword(!showPassword)}} className="absolute top-[40%] right-4 peer-placeholder-shown:hidden transition-all duration-200">
+                                {showPassword ? <EyeOff/> : <Eye />}</div>
 
                             <label
                                 htmlFor="password"

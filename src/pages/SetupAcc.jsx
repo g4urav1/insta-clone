@@ -6,6 +6,7 @@ import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { MobileContext } from "../context/context"
+import { Eye, EyeOff } from "lucide-react";
 
 export default function setupAcc() {
     const now = new Date();
@@ -23,7 +24,9 @@ export default function setupAcc() {
     const [birthday, setBirthday] = useState(today);
     const [error, setError] = useState("");
 
-    const [showPassword, setShowPassword] = useState(true)
+
+    const [showPasswordPage, setShowPasswordPage] = useState(true)
+    const [showPassword, setShowPassword] = useState(false)
     const [showAge, setShowAge] = useState(false)
     const [showName, setShowName] = useState(false)
     const [showUserName, setShowUserName] = useState(false)
@@ -46,23 +49,23 @@ export default function setupAcc() {
             window.removeEventListener("resize", checkScreenSize);
         };
     }, [navigate]);
-    
-function Age() {
-    setShowPassword(false)
-    setShowAge(true)
-}
-function Name() {
-    setShowAge(false)
-    setShowName(true)
-}
-function UserName() {
-    setShowName(false)
-    setShowUserName(true)
-}
-function Terms() {
-    setShowUserName(false)
-    setShowTerms(true)
-}
+
+    function Age() {
+        setShowPasswordPage(false)
+        setShowAge(true)
+    }
+    function Name() {
+        setShowAge(false)
+        setShowName(true)
+    }
+    function UserName() {
+        setShowName(false)
+        setShowUserName(true)
+    }
+    function Terms() {
+        setShowUserName(false)
+        setShowTerms(true)
+    }
 
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -82,7 +85,7 @@ function Terms() {
                 </header>
             }
 
-            {showPassword &&
+            {showPasswordPage &&
                 <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
                     <div className="p-4 space-y-3">
                         <h1 className="text-2xl font-semibold">Create a password</h1>
@@ -92,13 +95,14 @@ function Terms() {
                         </p>
                         <div className="relative mb-5 w-full">
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 placeholder=" "
-                                autoComplete="password"
-                                autoFocus
-                                className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
+                                autoComplete="current-password"
+                                className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"
                             />
+                            <div onClick={() => { setShowPassword(!showPassword) }} className="absolute top-[40%] right-4 peer-placeholder-shown:hidden transition-all duration-200">
+                                {showPassword ? <EyeOff /> : <Eye />}</div>
 
                             <label
                                 htmlFor="password"
@@ -109,7 +113,7 @@ function Terms() {
                         </div>
                         <button
                             type="submit"
-                            onClick={()=>{Age()}}
+                            onClick={() => { Age() }}
                             className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                         >
                             Next
@@ -165,7 +169,7 @@ function Terms() {
                     </div>
                     <button
                         type="submit"
-                        onClick={()=>{Name()}}
+                        onClick={() => { Name() }}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -203,7 +207,7 @@ function Terms() {
                     </div>
                     <button
                         type="submit"
-                        onClick={()=>{UserName()}}
+                        onClick={() => { UserName() }}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next
@@ -240,7 +244,7 @@ function Terms() {
                     </div>
                     <button
                         type="submit"
-                        onClick={()=>{Terms()}}
+                        onClick={() => { Terms() }}
                         className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
                     >
                         Next

@@ -12,11 +12,11 @@ export default function Home() {
   const [active, setActive] = useState("home");
 
 
-  // useEffect(() => {
-  //   if (!loggedin) {
-  //     navigate("/menu");
-  //   }
-  // }, [loggedin, navigate]);
+  useEffect(() => {
+    if (!loggedin) {
+      navigate("/menu");
+    }
+  }, [loggedin, navigate]);
 
   return (
     <div className="bg-bg min-h-screen">
