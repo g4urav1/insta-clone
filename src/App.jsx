@@ -9,7 +9,7 @@ import ResetPass from "./pages/resetPassword";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useContext, useState } from "react";
-import { LoginContext, MobileContext } from "./context/context";
+import { LoginContext, MobileContext, MailContext } from "./context/context";
 
 
 const router = createBrowserRouter([
@@ -31,11 +31,14 @@ const router = createBrowserRouter([
 export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
+  const [mail, setMail] = useState("");
   return (
-    < LoginContext.Provider value={{ loggedin, setLoggedin }}>
+    <MailContext.Provider value={{ mail, setMail }}>
+    <LoginContext.Provider value={{ loggedin, setLoggedin }}>
       <MobileContext.Provider value={{ isMobile, setIsMobile }}>
         <RouterProvider router={router} />
       </MobileContext.Provider>
     </LoginContext.Provider >
+    </MailContext.Provider >
   );
 }

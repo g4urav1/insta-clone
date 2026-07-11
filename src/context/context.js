@@ -1,3 +1,4 @@
+import { Mail } from "lucide-react";
 import { createContext } from "react";
 
 export const MobileContext = createContext({
@@ -7,4 +8,8 @@ export const MobileContext = createContext({
 export const LoginContext = createContext({
     loggedin: false,
     setLoggedin: () => { }
+});
+export const MailContext = createContext({
+    mail: "",
+    setMail: () => { }
 });

@@ -5,7 +5,7 @@ import famora from "../assets/famora.svg"
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"
 import { useContext, useEffect } from "react"
-import { MobileContext } from "../context/context"
+import { MailContext, MobileContext } from "../context/context"
 
 export default function SignupAuth() {
     const year = new Date().getFullYear()
@@ -29,9 +29,36 @@ export default function SignupAuth() {
         };
     }, [navigate]);
 
-    function verifyCode() {
-        navigate("/account_setup")
-    }
+    const {mail, setMail} = useContext(MailContext)
+   
+     const handleSignup = async () => {
+       try {
+         const response = await fetch("http://localhost:1111/signupAuth", {
+           method: "POST",
+           headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify({
+             mail,
+             Code
+           }),
+         });
+   
+         const data = await response.json();
+   
+         if(response.ok){
+           alert("Confirmation code sent on email")
+         }
+   
+         navigate("/account_setup")
+     
+       } catch (error) {
+         console.error(error);
+         alert("Server Error");
+       }
+     };
+        
+    
 
     return (
         <div className="min-h-screen bg-bg text-white overflow-x-hidden">
