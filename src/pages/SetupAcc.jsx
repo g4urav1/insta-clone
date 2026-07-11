@@ -61,6 +61,10 @@ export default function setupAcc() {
     setShowTerms(true);
   }
 
+  function AccountCreated(){
+    navigate("/login")
+  }
+
   return (
     <div className="min-h-screen bg-bg text-white overflow-x-hidden">
       {!isMobile ? (
@@ -79,7 +83,7 @@ export default function setupAcc() {
 
       {showPasswordPage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">Create a password</h1>
             <p>
               Create a password with at least 6 letters or numbers. It should be
@@ -134,7 +138,7 @@ export default function setupAcc() {
 
       {showAge && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto justify-center items-center">
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">What's your birthday?</h1>
             <p>
               Use your own birthday, even if this account is for a business, a
@@ -195,7 +199,7 @@ export default function setupAcc() {
 
       {showName && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">What's your name?</h1>
             <p>Add your name so friends can find you.</p>
             <div className="relative mb-5 w-full">
@@ -240,7 +244,7 @@ export default function setupAcc() {
 
       {showUserName && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">Create a username</h1>
             <p>
               Add a username or use our suggestion. You can change this at any
@@ -288,7 +292,7 @@ export default function setupAcc() {
 
       {showTerms && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">
               Agree to Instagram's terms and policies
             </h1>
@@ -310,6 +314,7 @@ export default function setupAcc() {
             </div>
             <button
               type="submit"
+              onClick={()=>{AccountCreated()}}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
               I agree
