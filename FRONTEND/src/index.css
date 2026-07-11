@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans";
+    color: var(--fm-text);
+}
+
+
+
+
+:root {
+    --fm-bg: #080A12;
+    --fm-surface: #11131F;
+
+    --fm-primary: #8B5CF6;
+    --fm-secondary: #FF4ECD;
+    --fm-accent: #00E5FF;
+    --fm-lime: #B6FF5C;
+
+    --fm-text: #F8FAFC;
+    --fm-muted: #9CA3AF;
+
+    --fm-gradient: linear-gradient(135deg, #8B5CF6 0%, #FF4ECD 55%, #00E5FF 100%);
+}

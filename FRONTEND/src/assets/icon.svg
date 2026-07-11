@@ -1,0 +1,40 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  
+
+  <!-- Upper orbit curve: moved away from F -->
+  <path 
+    d="M20 74C19 43 46 20 80 22" 
+    stroke="url(#orbit1)" 
+    stroke-width="5" 
+    stroke-linecap="round"
+  />
+
+  <!-- Lower orbit curve -->
+  <path 
+    d="M98 48C97 78 74 98 44 98" 
+    stroke="url(#orbit2)" 
+    stroke-width="5" 
+    stroke-linecap="round"
+  />
+
+  <!-- Orbit dots -->
+  <circle cx="90" cy="30" r="6" fill="#00E5FF"/>
+  <circle cx="30" cy="90" r="4.5" fill="#FF4ECD"/>
+
+  <!-- Rounded F: smaller and centered, no overlap -->
+  <rect x="42" y="40" width="16" height="50" rx="8" fill="white"/>
+  <rect x="42" y="40" width="38" height="14" rx="7" fill="white"/>
+  <rect x="42" y="59" width="31" height="13" rx="6.5" fill="white"/>
+
+  <defs>
+    <linearGradient id="orbit1" x1="20" y1="74" x2="80" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#FF4ECD"/>
+    </linearGradient>
+
+    <linearGradient id="orbit2" x1="98" y1="48" x2="44" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E5FF"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>
