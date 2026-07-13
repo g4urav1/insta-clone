@@ -12,12 +12,12 @@ export function Search() {
       cy="10.5"
       r="6.5"
       stroke="#FFFFFF"
-      stroke-width="2"/>
+      strokeWidth="2"/>
   <path
       d="M15.3 15.3L20 20"
       stroke="#FFFFFF"
-      stroke-width="2"
-      stroke-linecap="round"/>
+      strokeWidth="2"
+      strokeLinecap="round"/>
 </svg>
   )
 }
@@ -33,12 +33,12 @@ export function SearchFill() {
       cy="10.5"
       r="6.5"
       stroke="#FFFFFF"
-      stroke-width="2.5"/>
+      strokeWidth="2.5"/>
   <path
       d="M15.3 15.3L20 20"
       stroke="#FFFFFF"
-      stroke-width="2"
-      stroke-linecap="round"/>
+      strokeWidth="2"
+      strokeLinecap="round"/>
 </svg>
   )
 }

@@ -8,8 +8,8 @@ export function Plus() {
   <path
     d="M12 5V19M5 12H19"
     stroke="#FFFFFF"
-    stroke-width="2"
-    stroke-linecap="round"/>
+    strokeWidth="2"
+    strokeLinecap="round"/>
 </svg>
   )
 }

@@ -23,16 +23,16 @@ export function Message() {
             Q16 17 17 17
             Z"
                     stroke="currentColor"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
                 />
 
                 <path
                     d="M22 32L32 32"
                     stroke="currentColor"
-                    stroke-width="4"
-                    stroke-linecap="round"
+                    strokeWidth="4"
+                    strokeLinecap="round"
                 />
             </g>
         </svg>
@@ -64,16 +64,16 @@ export function MessageFill() {
             Z"
                     stroke="currentColor"
                     fill="white"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
                 />
 
                 <path
                     d="M22 32L32 32"
                     stroke="black"
-                    stroke-width="4"
-                    stroke-linecap="round"
+                    strokeWidth="4"
+                    strokeLinecap="round"
                 />
             </g>
         </svg>

@@ -21,9 +21,9 @@ export function Explore() {
                Z"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
                 />
             </g>
 
@@ -61,9 +61,9 @@ export function ExploreFill() {
                Z"
             fill="none"
             stroke="black"
-            stroke-width="4"
-            stroke-linejoin="round"
-            stroke-linecap="round"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            strokeLinecap="round"
         />
     </g>
    

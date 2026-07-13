@@ -14,7 +14,7 @@ export function Dashboard() {
                 height="18"
                 rx="3"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
             />
 
             <rect x="7.25" y="12" width="2.5" height="6" rx="0.75" fill="currentColor" />
@@ -40,7 +40,7 @@ export function DashboardFill() {
                 rx="3"
                 fill="white"
                 stroke="white"
-                stroke-width="2"
+                strokeWidth="2"
             />
 
             <rect x="7.25" y="12" width="2.5" height="6" rx="0.75" fill="black" />
