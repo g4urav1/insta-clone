@@ -1,14 +1,12 @@
 import loginhook from "../assets/loginhook.webp";
 import icon from "../assets/icon.svg";
-import meta from "../assets/meta.svg";
 import famora from "../assets/famora.svg";
-import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { MobileContext } from "../context/context";
+import { MailContext, MobileContext } from "../context/context";
 import { Eye, EyeOff } from "lucide-react";
 
-export default function setupAcc() {
+export default function SetupAcc() {
   const now = new Date();
   const year = now.getFullYear();
   const getToday = () => {
@@ -17,15 +15,17 @@ export default function setupAcc() {
     return `${year}-${month}-${day}`;
   };
 
+  const { mail } = useContext(MailContext);
   const today = getToday();
   const [birthday, setBirthday] = useState(today);
   const [error, setError] = useState("");
-  const [showPasswordPage, setShowPasswordPage] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [showAge, setShowAge] = useState(false);
-  const [showName, setShowName] = useState(false);
-  const [showUserName, setShowUserName] = useState(false);
-  const [showTerms, setShowTerms] = useState(false);
+
+  const [passwordPage, setPasswordPage] = useState(true);
+  const [agePage, setAgePage] = useState(false);
+  const [namePage, setNamePage] = useState(false);
+  const [userNamePage, setUserNamePage] = useState(false);
+  const [termsPage, setTermsPage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,28 +42,70 @@ export default function setupAcc() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, [navigate]);
+  }, []);
 
-  function Age() {
-    setShowPasswordPage(false);
-    setShowAge(true);
-  }
-  function Name() {
-    setShowAge(false);
-    setShowName(true);
-  }
-  function UserName() {
-    setShowName(false);
-    setShowUserName(true);
-  }
-  function Terms() {
-    setShowUserName(false);
-    setShowTerms(true);
-  }
+  const [password, setPassword] = useState("");
+  const [age, setAge] = useState("");
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
 
-  function AccountCreated(){
-    navigate("/login")
-  }
+  const passwordSetup = async () => {
+    try {
+      const response = await fetch("http://localhost:1111/createPassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mail,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        setPasswordPage(false);
+        setAgePage(true);
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Internal server error");
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:1111/account_setup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mail,
+          password,
+          birthday,
+          name,
+          userName,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        navigate("/login");
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Internal server error");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -81,7 +123,7 @@ export default function setupAcc() {
         </header>
       )}
 
-      {showPasswordPage && (
+      {passwordPage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">Create a password</h1>
@@ -95,6 +137,11 @@ export default function setupAcc() {
                 id="password"
                 placeholder=" "
                 autoComplete="current-password"
+                autoFocus
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"
               />
               <div
@@ -116,7 +163,7 @@ export default function setupAcc() {
             <button
               type="submit"
               onClick={() => {
-                Age();
+                passwordSetup();
               }}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
@@ -136,7 +183,7 @@ export default function setupAcc() {
         </main>
       )}
 
-      {showAge && (
+      {agePage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto justify-center items-center">
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">What's your birthday?</h1>
@@ -161,23 +208,46 @@ export default function setupAcc() {
                     setError("Birthday cannot be in the future.");
                   } else {
                     setError("");
+
+                    const birthDate = new Date(selectedDate);
+                    const todayDate = new Date();
+
+                    let age = todayDate.getFullYear() - birthDate.getFullYear();
+
+                    if (
+                      todayDate.getMonth() < birthDate.getMonth() ||
+                      (todayDate.getMonth() === birthDate.getMonth() &&
+                        todayDate.getDate() < birthDate.getDate())
+                    ) {
+                      age--;
+                    }
+
+                    setAge(age);
+                  }
+
+                  if (selectedDate > today) {
+                    setError("Birthday cannot be in the future.");
+                  } else {
+                    setError("");
                   }
                 }}
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
+                style={{ colorScheme: "dark" }}
               />
 
               <label
                 htmlFor="date"
                 className="pointer-events-none absolute left-6 top-2 text-[14px] font-medium text-[#b8c4d4] transition-all duration-200 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-[14px]"
               >
-                Birthday
+                Birthday {age && `(${age} years old)`}
               </label>
               {error && <p className="text-sm text-red-400">{error}</p>}
             </div>
             <button
               type="submit"
               onClick={() => {
-                Name();
+                setAgePage(false);
+                setNamePage(true);
               }}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
@@ -197,7 +267,7 @@ export default function setupAcc() {
         </main>
       )}
 
-      {showName && (
+      {namePage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">What's your name?</h1>
@@ -209,6 +279,10 @@ export default function setupAcc() {
                 placeholder=" "
                 autoComplete="name"
                 autoFocus
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
               />
 
@@ -222,7 +296,8 @@ export default function setupAcc() {
             <button
               type="submit"
               onClick={() => {
-                UserName();
+                setNamePage(false);
+                setUserNamePage(true);
               }}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
@@ -242,7 +317,7 @@ export default function setupAcc() {
         </main>
       )}
 
-      {showUserName && (
+      {userNamePage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">Create a username</h1>
@@ -256,6 +331,10 @@ export default function setupAcc() {
                 id="username"
                 placeholder=" "
                 autoFocus
+                value={userName}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
                 autoComplete="username"
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
               />
@@ -270,7 +349,8 @@ export default function setupAcc() {
             <button
               type="submit"
               onClick={() => {
-                Terms();
+                setUserNamePage(false);
+                setTermsPage(true);
               }}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
@@ -290,7 +370,7 @@ export default function setupAcc() {
         </main>
       )}
 
-      {showTerms && (
+      {termsPage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">
@@ -314,7 +394,7 @@ export default function setupAcc() {
             </div>
             <button
               type="submit"
-              onClick={()=>{AccountCreated()}}
+              onClick={()=>handleSubmit()}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white  transition hover:scale-[1.01] active:scale-[0.99]"
             >
               I agree

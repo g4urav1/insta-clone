@@ -9,11 +9,7 @@ import { MailContext, MobileContext } from "../context/context";
 import { ChevronLeftIcon } from "lucide-react";
 
 export default function Signup() {
-  const year = new Date().getFullYear();
   const navigate = useNavigate();
-
-  const { isMobile, setIsMobile } = useContext(MobileContext);
-
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
@@ -30,7 +26,12 @@ export default function Signup() {
     };
   }, [navigate]);
 
+  const year = new Date().getFullYear();
+
+  const { isMobile, setIsMobile } = useContext(MobileContext);
+
   const { mail, setMail } = useContext(MailContext);
+  const [inputMail, setInputMail] = useState("");
 
   const handleSignup = async () => {
     try {
@@ -48,9 +49,10 @@ export default function Signup() {
 
       if (response.ok) {
         alert("Confirmation code sent on email");
+        setInputMail("");
         navigate("/auth");
       } else {
-        console.log(data.message)
+        console.log(data.message);
         alert(data.message);
       }
     } catch (error) {
@@ -88,8 +90,9 @@ export default function Signup() {
               placeholder=" "
               autoComplete="Email"
               autoFocus
-              value={mail}
+              value={inputMail}
               onChange={(e) => {
+                setInputMail(e.target.value);
                 setMail(e.target.value);
               }}
               className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
