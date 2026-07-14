@@ -11,11 +11,11 @@ export function Search() {
       cx="10.5"
       cy="10.5"
       r="6.5"
-      stroke="#FFFFFF"
+      stroke="currentColor"
       strokeWidth="2"/>
   <path
       d="M15.3 15.3L20 20"
-      stroke="#FFFFFF"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"/>
 </svg>
@@ -32,11 +32,11 @@ export function SearchFill() {
       cx="10.5"
       cy="10.5"
       r="6.5"
-      stroke="#FFFFFF"
+      stroke="currentColor"
       strokeWidth="2.5"/>
   <path
       d="M15.3 15.3L20 20"
-      stroke="#FFFFFF"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"/>
 </svg>

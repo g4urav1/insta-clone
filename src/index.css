@@ -10,6 +10,13 @@
     color: var(--fm-text);
 }
 
+.logo {
+    filter: invert(1);
+}
+
+html.light .logo {
+    filter: invert(0);
+}
 
 
 
@@ -26,4 +33,28 @@
     --fm-muted: #9CA3AF;
 
     --fm-gradient: linear-gradient(135deg, #8B5CF6 0%, #FF4ECD 55%, #00E5FF 100%);
+
+    --fm-hover: #1A1D2B;
+    --fm-hover-text: #F8FAFC;
+}
+
+html.light {
+    --fm-bg: #F8FAFC;
+    --fm-surface: #FFFFFF;
+
+    --fm-primary: #8B5CF6;
+    --fm-secondary: #FF4ECD;
+    --fm-accent: #00E5FF;
+    --fm-lime: #B6FF5C;
+
+    --fm-text: #111827;
+    --fm-muted: #6B7280;
+
+    --fm-gradient: linear-gradient(135deg,
+            #8B5CF6 0%,
+            #FF4ECD 55%,
+            #00E5FF 100%);
+
+    --fm-hover: #fff6f6;
+    --fm-hover-text: #111827;
 }

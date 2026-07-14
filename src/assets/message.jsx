@@ -50,20 +50,20 @@ export function MessageFill() {
             <g transform="rotate(330 32 32)">
                 <path
                     d="
-            M17 17
-            Q18 16 20 17
-            L47 30
-            Q50 31 50 32
-            Q50 33 47 34
-            L20 47
-            Q17 48 16.5 45
-            L22 33
-            Q22.5 32 22 31
-            L16.5 19
-            Q16 17 17 17
-            Z"
-                    stroke="currentColor"
-                    fill="white"
+                    M17 17
+                    Q18 16 20 17
+                    L47 30
+                    Q50 31 50 32
+                    Q50 33 47 34
+                    L20 47
+                    Q17 48 16.5 45
+                    L22 33
+                    Q22.5 32 22 31
+                    L16.5 19
+                    Q16 17 17 17
+                    Z"
+                    fill="var(--fm-text)"
+                    stroke="var(--fm-text)"
                     strokeWidth="4"
                     strokeLinejoin="round"
                     strokeLinecap="round"
@@ -71,11 +71,11 @@ export function MessageFill() {
 
                 <path
                     d="M22 32L32 32"
-                    stroke="black"
+                    stroke="var(--fm-bg)"
                     strokeWidth="4"
                     strokeLinecap="round"
                 />
             </g>
         </svg>
-    )
+    );
 }

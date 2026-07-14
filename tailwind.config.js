@@ -17,6 +17,8 @@ export default {
 
         text: "var(--fm-text)",
         muted: "var(--fm-muted)",
+        hovertext: "var(--fm-hover-text)",
+        hoverbg: "var(--fm-hover)",
       },
       backgroundImage: {
         "fm-gradient": "var(--fm-gradient)",

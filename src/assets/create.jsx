@@ -7,7 +7,7 @@ export function Plus() {
      fill="none">
   <path
     d="M12 5V19M5 12H19"
-    stroke="#FFFFFF"
+    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"/>
 </svg>

@@ -5,7 +5,7 @@ import famora from "../assets/famora.svg";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { MobileContext } from "../context/context";
+import {MobileContext } from "../context/context";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
@@ -51,9 +51,10 @@ export default function Login() {
       const data = await response.json();
       if (response.ok) {
         alert(data.message);
+        localStorage.setItem("loggedin", true);
         navigate("/");
       }
-      else{
+      else {
         alert(data.message);
       }
     } catch (error) {
