@@ -69,8 +69,8 @@ export default function Menu() {
                         <section className="flex flex-col gap-10 min-h-[calc(100vh-120px)] w-full items-center justify-center  bg-surface px-6 py-24 md:py-10">
                             <div className="flex flex-col justify-center items-center w-full max-w-md">
                                 <img
-                                    className="w-[70px] sm:w-[80px]"
-                                    src={icon}
+                                    className="w-64"
+                                    src={famora}
                                     alt="Famora icon"
                                 />
 

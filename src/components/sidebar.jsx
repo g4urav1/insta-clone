@@ -75,7 +75,7 @@ export default function Sidebar() {
         className={`
     group h-screen overflow-hidden
     transition-[width] duration-300 ease-in-out
-    border-r border-muted/20 bg-bg text-text
+    border-r border-muted bg-bg text-text
     px-2 py-4 flex flex-col flex-shrink-0
     ${showMore ? "w-64" : "w-16 hover:w-64"}
   `}
@@ -361,7 +361,8 @@ export default function Sidebar() {
                 </div>
                 <div>
                   <a href="#" className=" flex items-center rounded-xl p-3 text-muted hover:text-hovertext hover:bg-hoverbg"><span >Switch accounts</span></a>
-                  <a href="#" className=" flex items-center rounded-xl p-3 text-muted hover:text-hovertext hover:bg-hoverbg"><span>Log out</span></a>
+                  <a href="#" className=" flex items-center rounded-xl p-3 text-muted hover:text-hovertext hover:bg-hoverbg"
+                    onClick={() => { localStorage.setItem("isLoggedIn", false) }}><span>Log out</span></a>
                 </div>
               </div>
             )}

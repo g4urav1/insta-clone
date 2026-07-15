@@ -15,7 +15,6 @@ export default function ResetPass() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  // If token exists in URL, show Reset Password page
   const token = searchParams.get("token");
   const showFindAccount = !token;
   const showNewPassword = !!token;
@@ -40,26 +39,57 @@ export default function ResetPass() {
     };
   }, [setIsMobile]);
 
-  function handleSubmit() {
-    // Call your backend here to send reset email
-    // Example:
-    // POST /api/forgot-password
+  const [email, setEmail] = useState("");
 
-    setDropdown(true);
+  async function handleSubmit() {
+    try {
+      const res = await fetch("http://localhost:1111/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setDropdown(true);
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function handlePasswordChange() {
-    // Send token + new password to backend
-    // Example:
-    // POST /api/reset-password
-    // {
-    //   token,
-    //   password: newPassword
-    // }
+ async function handlePasswordChange() {
+  try {
+    const res = await fetch("http://localhost:1111/reset-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token,
+        password: newPassword,
+      }),
+    });
 
-    alert("Password has been changed");
-    navigate("/login");
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Password Changed");
+      navigate("/login");
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    console.log(err);
   }
+}
 
   return (
     <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -95,6 +125,8 @@ export default function ResetPass() {
                 placeholder=" "
                 autoComplete="account"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-[#1d1d20] px-6 pb-3 pt-8 text-white outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
               />
 
