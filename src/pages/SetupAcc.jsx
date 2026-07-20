@@ -44,12 +44,14 @@ export default function SetupAcc() {
     };
   }, []);
 
+  const [sending, setSending] = useState(false);
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
 
   const passwordSetup = async () => {
+    setSending(true);
     try {
       const response = await fetch("http://localhost:1111/createPassword", {
         method: "POST",
@@ -74,10 +76,13 @@ export default function SetupAcc() {
     } catch (error) {
       console.log(error);
       alert("Internal server error");
+    } finally {
+      setSending(false);
     }
   };
 
   const handleSubmit = async () => {
+    setSending(true);
     try {
       const response = await fetch("http://localhost:1111/account_setup", {
         method: "POST",
@@ -104,6 +109,8 @@ export default function SetupAcc() {
     } catch (error) {
       console.log(error);
       alert("Internal server error");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -125,6 +132,7 @@ export default function SetupAcc() {
 
       {passwordPage && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col  md:w-1/2 md:mx-auto  justify-center items-center">
+          <div></div>
           <div className="p-4 space-y-3 min-w-full">
             <h1 className="text-2xl font-semibold">Create a password</h1>
             <p>
@@ -165,11 +173,11 @@ export default function SetupAcc() {
               onClick={() => {
                 passwordSetup();
               }}
-              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-              Next
+                 {sending ? <div className="h-5 w-5 animate-spin  rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
             </button>
-          </div>
+          </div> 
           <footer className="mt-auto text-center mb-4">
             <button
               onClick={() => {
@@ -395,9 +403,9 @@ export default function SetupAcc() {
             <button
               type="submit"
               onClick={()=>handleSubmit()}
-              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-              I agree
+                  {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "I agree"}
             </button>
           </div>
           <footer className="mt-auto text-center mb-4">

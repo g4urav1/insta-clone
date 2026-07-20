@@ -33,10 +33,11 @@ export default function Login() {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [sending, setSending] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setSending(true);
     try {
       const response = await fetch("http://localhost:1111/login", {
         method: "POST",
@@ -60,6 +61,8 @@ export default function Login() {
     } catch (error) {
       console.error(error);
       alert("Server Error");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -167,9 +170,9 @@ export default function Login() {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99]"
+                className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] justify-center flex gap-2 items-center"
               >
-                Log in
+                {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Log in"}
               </button>
 
               <button

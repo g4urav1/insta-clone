@@ -251,6 +251,10 @@ export default function Sidebar() {
         <aside
           className={`
           group
+          fixed
+          top-0
+          left-0
+          z-40
           h-screen
           overflow-hidden
           transition-[width]

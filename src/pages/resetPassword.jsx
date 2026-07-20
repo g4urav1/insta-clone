@@ -40,8 +40,10 @@ export default function ResetPass() {
   }, [setIsMobile]);
 
   const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
 
   async function handleSubmit() {
+    setSending(true);
     try {
       const res = await fetch("http://localhost:1111/forgot-password", {
         method: "POST",
@@ -62,10 +64,13 @@ export default function ResetPass() {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setSending(false);
     }
   }
 
  async function handlePasswordChange() {
+  setSending(true);
   try {
     const res = await fetch("http://localhost:1111/reset-password", {
       method: "POST",
@@ -88,6 +93,8 @@ export default function ResetPass() {
     }
   } catch (err) {
     console.log(err);
+  } finally {
+    setSending(false);
   }
 }
 
@@ -107,7 +114,6 @@ export default function ResetPass() {
         </header>
       )}
 
-      {/* FIND ACCOUNT */}
       {showFindAccount && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto items-center">
           <div className="p-4 space-y-3 w-full">
@@ -140,15 +146,14 @@ export default function ResetPass() {
 
             <button
               onClick={handleSubmit}
-              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-              Next
+               {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
             </button>
           </div>
         </main>
       )}
 
-      {/* EMAIL SENT MODAL */}
       {dropdown && (
         <main
           onClick={() => setDropdown(false)}
@@ -180,7 +185,7 @@ export default function ResetPass() {
           </div>
         </main>
       )}
-      {/* RESET PASSWORD */}
+
       {showNewPassword && (
         <main className="bg-bg relative min-h-[calc(100vh-70px)] border-b border-[#494D53]/60 flex flex-col md:w-1/2 md:mx-auto items-center">
           <div className="p-4 space-y-3 w-full">
@@ -220,9 +225,9 @@ export default function ResetPass() {
             <button
               type="button"
               onClick={handlePasswordChange}
-              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-              Continue
+                  {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Continue"}
             </button>
           </div>
         </main>

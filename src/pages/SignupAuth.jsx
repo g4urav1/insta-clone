@@ -31,8 +31,10 @@ export default function SignupAuth() {
 
   const { mail, setMail } = useContext(MailContext);
   const [code, setCode] = useState("");
+  const [sending, setSending] = useState(false);
 
   const verifyCode = async () => {
+    setSending(true);
     try {
       const response = await fetch("http://localhost:1111/signupAuth", {
         method: "POST",
@@ -54,6 +56,8 @@ export default function SignupAuth() {
     } catch (error) {
       console.error(error);
       alert("Server Error");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -104,9 +108,9 @@ export default function SignupAuth() {
             onClick={() => {
               verifyCode();
             }}
-            className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99]"
+            className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
           >
-            Next
+              {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
           </button>
           <button
             type="button"
