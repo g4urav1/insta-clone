@@ -61,6 +61,8 @@ export default function Home() {
     "https://i.pravatar.cc/150?img=10",
     "https://i.pravatar.cc/150?img=11"
   ]
+  const now = new Date();
+  const year = now.getFullYear();
 
 
   return (
@@ -79,11 +81,37 @@ export default function Home() {
             <Posts pfp="https://i.pravatar.cc/150?img=2" post="https://picsum.photos/350/400?2" Username="jvlgui" likeCount="12" caption="lorem ipsum dollor" /></div>
         </section>
         <section className="w-1/5">
-          <div>
+          <div className="space-y-6">
             <p>Suggested for you</p>
-            <div>
+            <div className="space-y-4">
               <Accounts pfp="https://i.pravatar.cc/150?img=1" Username="yuiop"/>
+              <Accounts pfp="https://i.pravatar.cc/150?img=2" Username="asdfg"/>
+              <Accounts pfp="https://i.pravatar.cc/150?img=3" Username="rfszd"/>
+              <Accounts pfp="https://i.pravatar.cc/150?img=4" Username="zdxow"/>
+              <Accounts pfp="https://i.pravatar.cc/150?img=5" Username="msify"/>
+              <Accounts pfp="https://i.pravatar.cc/150?img=6" Username="zgnow"/>
             </div>
+            <div >
+          <div className="w-full space-y-4 text-xs text-text">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-3">
+        
+              <a href="#">About</a>
+              <a href="#">Help</a>
+              <a href="#">API</a>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Location</a>
+              <a href="#">Popular</a>
+              <a href="#">Meta AI</a>
+              <a href="#">Threads</a>
+           
+            </div>
+
+            <div className="text-sm">
+              <span>© {year} Famora from Meta</span>
+            </div>
+          </div>
+        </div>
           </div>
         </section>
       </main>
