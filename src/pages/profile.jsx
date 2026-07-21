@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
   const {isMobile, setIsMobile} = useContext(MobileContext)
   return (
-    <div className="bg-bg text-text h-screen">
+    <div className="bg-bg text-text min-h-screen">
       {isMobile && <Nav/>}
       <Sidebar />
 

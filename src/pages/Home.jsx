@@ -2,9 +2,10 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MobileContext } from "../context/context";
 import famora from "../assets/icon.svg"
-
+import Posts from "../components/post";
 import Sidebar from "../components/sidebar"
 import Nav from "../components/nav"
+import Stories from "../components/stories";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -46,13 +47,37 @@ export default function Home() {
     };
   }, []);
 
+  const stories = [
+    "https://i.pravatar.cc/150?img=1",
+    "https://i.pravatar.cc/150?img=2",
+    "https://i.pravatar.cc/150?img=3",
+    "https://i.pravatar.cc/150?img=4",
+    "https://i.pravatar.cc/150?img=5",
+    "https://i.pravatar.cc/150?img=6",
+    "https://i.pravatar.cc/150?img=7",
+    "https://i.pravatar.cc/150?img=8",
+    "https://i.pravatar.cc/150?img=9",
+    "https://i.pravatar.cc/150?img=10",
+    "https://i.pravatar.cc/150?img=11"
+  ]
+
 
   return (
     <div className="bg-bg min-h-screen">
       {isMobile && <Nav />}
       <Sidebar />
-      <main>
-
+      <main className="flex flex-col gap-4 items-center bg-bg p-2">
+        <section className="w-3/5 space-y-4" >
+          <div className="flex items-center gap-3 w-4/5 snap-x overflow-auto no-scrollbar" >
+            {stories.map((pfp, i) => (
+            <Stories key={i} pfp={pfp} />
+          ))}
+          </div>
+          <div className="flex flex-col gap-4">
+            <Posts pfp="https://i.pravatar.cc/150?img=1" post="https://picsum.photos/350/400?1" Username="hfejsd" likeCount="12" caption="lorem ipsum dollor" />
+            <Posts pfp="https://i.pravatar.cc/150?img=2" post="https://picsum.photos/350/400?2" Username="jvlgui" likeCount="12" caption="lorem ipsum dollor" /></div>
+        </section>
+        <section></section>
       </main>
 
     </div>
