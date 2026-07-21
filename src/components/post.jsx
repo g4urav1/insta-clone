@@ -5,8 +5,8 @@ import { Message } from "../assets/message";
 export default function Posts(props) {
     const [toggle, setToggle]= useState(false)
     return (
-        <div>
-            <div className="relative space-y-1">
+        <div className="flex justify-center">
+            <div className="relative space-y-1 w-fit">
                 <div className="flex items-center gap-2">
                     <img className="bg-bg rounded-full w-8" src={props.pfp} alt="pfp" />
                     <p>{props.Username}</p>

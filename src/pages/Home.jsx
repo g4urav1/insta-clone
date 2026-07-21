@@ -6,6 +6,7 @@ import Posts from "../components/post";
 import Sidebar from "../components/sidebar"
 import Nav from "../components/nav"
 import Stories from "../components/stories";
+import Accounts from "../components/accounts";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -66,9 +67,9 @@ export default function Home() {
     <div className="bg-bg min-h-screen">
       {isMobile && <Nav />}
       <Sidebar />
-      <main className="flex flex-col gap-4 items-center bg-bg p-2">
+      <main className="flex justify-center gap-4 bg-bg p-2">
         <section className="w-3/5 space-y-4" >
-          <div className="flex items-center gap-3 w-4/5 snap-x overflow-auto no-scrollbar" >
+          <div className="flex items-center gap-3 snap-x overflow-auto no-scrollbar" >
             {stories.map((pfp, i) => (
             <Stories key={i} pfp={pfp} />
           ))}
@@ -77,7 +78,14 @@ export default function Home() {
             <Posts pfp="https://i.pravatar.cc/150?img=1" post="https://picsum.photos/350/400?1" Username="hfejsd" likeCount="12" caption="lorem ipsum dollor" />
             <Posts pfp="https://i.pravatar.cc/150?img=2" post="https://picsum.photos/350/400?2" Username="jvlgui" likeCount="12" caption="lorem ipsum dollor" /></div>
         </section>
-        <section></section>
+        <section className="w-1/5">
+          <div>
+            <p>Suggested for you</p>
+            <div>
+              <Accounts pfp="https://i.pravatar.cc/150?img=1" Username="yuiop"/>
+            </div>
+          </div>
+        </section>
       </main>
 
     </div>
