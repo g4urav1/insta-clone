@@ -54,6 +54,8 @@ export default function Login() {
       if (response.ok) {
         alert(data.message);
         localStorage.setItem("loggedin", true);
+        localStorage.setItem("SessionId", data.SessionId);
+        
         navigate("/");
       }
       else {

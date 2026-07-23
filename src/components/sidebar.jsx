@@ -447,20 +447,7 @@ export default function Sidebar() {
                   </div>
 
                   <div className="mt-2">
-                    <button
-                      type="button"
-                      className="
-      w-full
-      rounded-xl
-      p-3
-      text-left
-      text-muted
-      hover:text-hovertext
-      hover:bg-hoverbg
-    "
-                    >
-                      Switch accounts
-                    </button>
+            
 
                     <button
                       type="button"

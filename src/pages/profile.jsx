@@ -3,7 +3,8 @@ import pfp from "../assets/Profile.jpg";
 import { postcss } from "autoprefixer";
 import { useContext } from "react";
 import { MobileContext } from "../context/context";
-import Nav from "../components/nav"
+import Nav from "../components/nav";
+import { NavLink } from "react-router-dom";
 export default function ProfilePage() {
   const posts = [
     "https://picsum.photos/300?1",
@@ -20,13 +21,13 @@ export default function ProfilePage() {
     "https://picsum.photos/300?12",
     "https://picsum.photos/300?13",
     "https://picsum.photos/300?14",
-    "https://picsum.photos/300?15"
-  ]
+    "https://picsum.photos/300?15",
+  ];
 
-  const {isMobile, setIsMobile} = useContext(MobileContext)
+  const { isMobile, setIsMobile } = useContext(MobileContext);
   return (
     <div className="bg-bg text-text min-h-screen">
-      {isMobile && <Nav/>}
+      {isMobile && <Nav />}
       <Sidebar />
 
       <main className="md:pl-16 md:p-4 mx-auto md:w-4/5 p-2 flex flex-col items-center">
@@ -52,11 +53,21 @@ export default function ProfilePage() {
                 18 <span className="text-text">Following</span>
               </p>
             </div>
-            <div className="text-sm">Caperidium</div>
+            <div className="text-sm">Bio</div>
           </div>
         </div>
         <div className="flex gap-2 w-full md:w-3/5 mx-auto mt-10 ">
-          <button className="bg-gray-500/50 w-1/2 py-2 rounded-lg">Edit Profile</button><button className="bg-gray-500/50 w-1/2 py-2 rounded-lg">Create Post</button>
+          <a
+            className="bg-gray-500/50 text-center w-1/2 py-2 rounded-lg"
+            href="edit/profile"
+          >
+            <button className=" py-2 ">
+              Edit Profile
+            </button>
+          </a>
+          <button className="bg-gray-500/50 w-1/2 py-2 rounded-lg">
+            Create Post
+          </button>
         </div>
         <div className="grid grid-cols-3 gap-2 mt-3 mb-[52px]">
           {posts.map((post, i) => (
@@ -64,12 +75,8 @@ export default function ProfilePage() {
               <img src={post} alt="" />
             </div>
           ))}
-
         </div>
-
       </main>
     </div>
   );
 }
-
-

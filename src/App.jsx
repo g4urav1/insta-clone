@@ -11,6 +11,7 @@ import Profile from "./pages/profile";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useContext, useState } from "react";
 import {  MobileContext, MailContext } from "./context/context";
+import EditProfile from "./pages/EditProfile";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
       { path: "auth", element: <SignupAuth /> },
       { path: "account_setup", element: <SetupAcc /> },
       { path: "password/reset", element: <ResetPass /> },
-      { path: "profile", element: <Profile /> }
+      { path: "profile", element: <Profile /> },  
+      { path: "edit/profile", element: <EditProfile /> }
     ]
   }
 ]);
