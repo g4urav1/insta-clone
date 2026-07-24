@@ -1,11 +1,12 @@
 import Sidebar from "../components/Sidebar";
 import pfp from "../assets/Profile.jpg";
 import { postcss } from "autoprefixer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MobileContext, UserContext } from "../context/context";
 import Nav from "../components/nav";
 import { NavLink } from "react-router-dom";
 import Footer from "../components/Footer";
+import { X } from "lucide-react";
 export default function ProfilePage() {
   const posts = [
     "https://picsum.photos/300?1",
@@ -26,7 +27,10 @@ export default function ProfilePage() {
   ];
 
   const { isMobile, setIsMobile } = useContext(MobileContext);
-  const {user, setUser}= useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
+
+  const [selectedPost, setSelectedPost] = useState(null);
+
   return (
     <div className="bg-bg text-text min-h-screen">
       {isMobile && <Nav />}
@@ -63,9 +67,7 @@ export default function ProfilePage() {
             className="bg-gray-500/50 text-center w-1/2 py-2 rounded-lg"
             href="edit/profile"
           >
-            <button className=" py-2 ">
-              Edit Profile
-            </button>
+            <button className=" py-2 ">Edit Profile</button>
           </a>
           <button className="bg-gray-500/50 w-1/2 py-2 rounded-lg">
             Create Post
@@ -73,14 +75,34 @@ export default function ProfilePage() {
         </div>
         <div className="grid grid-cols-3 gap-2 mt-3 mb-[52px]">
           {posts.map((post, i) => (
-            <div key={i}>
+            <div onClick={() => setSelectedPost(post)} key={i}>
               <img src={post} alt="" />
             </div>
           ))}
         </div>
+        {selectedPost && (
+          <main
+            onClick={() => setSelectedPost(null)}
+            className="absolute inset-0 bg-bg/10 backdrop-blur-[2px] flex items-center justify-center"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="md:w-4/5  flex flex-col justify-center bg-surface rounded-lg p-4 space-y-3"
+            >
+              <div className="flex justify-between">
+                <div></div>
+                <X onClick={() => setSelectedPost(null)} />
+              </div>
+              <div className="flex">
+                <section></section>
+                <section></section>
+              </div>
+            </div>
+          </main>
+        )}
       </main>
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
     </div>
   );
