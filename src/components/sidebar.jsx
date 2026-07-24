@@ -131,7 +131,6 @@ export default function Sidebar() {
     }
   };
 
-
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -146,22 +145,16 @@ export default function Sidebar() {
     };
   }, [setIsMobile]);
 
-
-  const Item = ({
-    to,
-    label,
-    icon,
-    activeIcon = icon,
-    onClick,
-  }) => (<li>
-    <NavLink
-      to={to}
-      onClick={() => {
-        setShowMore(false);
-        onClick?.();
-      }}
-      className={({ isActive }) =>
-        `
+  const Item = ({ to, label, icon, activeIcon = icon, onClick }) => (
+    <li>
+      <NavLink
+        to={to}
+        onClick={() => {
+          setShowMore(false);
+          onClick?.();
+        }}
+        className={({ isActive }) =>
+          `
         w-full
         flex
         items-center
@@ -172,44 +165,41 @@ export default function Sidebar() {
         duration-200
         whitespace-nowrap
         text-left
-        ${isActive
-          ? "bg-surface text-text"
-          : "text-muted hover:text-hovertext hover:bg-hoverbg"
+        ${
+          isActive
+            ? "bg-surface text-text"
+            : "text-muted hover:text-hovertext hover:bg-hoverbg"
         }
       `
-      }
-    >
-      {({ isActive }) => (
-        <>
-          <div className="w-6 h-6 flex items-center justify-center shrink-0">
-            {isActive ? activeIcon : icon}
-          </div>
+        }
+      >
+        {({ isActive }) => (
+          <>
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              {isActive ? activeIcon : icon}
+            </div>
 
-          <span
-            className={`
+            <span
+              className={`
               overflow-hidden
-              ${showMore
-                ? "w-32 opacity-100"
-                : "w-0 opacity-0 group-hover:w-32 group-hover:opacity-100"
+              ${
+                showMore
+                  ? "w-32 opacity-100"
+                  : "w-0 opacity-0 group-hover:w-32 group-hover:opacity-100"
               }
               transition-all
               duration-300
             `}
-          >
-            {label}
-          </span>
-        </>
-      )}
-    </NavLink>
-  </li>
+            >
+              {label}
+            </span>
+          </>
+        )}
+      </NavLink>
+    </li>
   );
 
-  const MobileItem = ({
-    to,
-    icon,
-    activeIcon = icon,
-    onClick,
-  }) => (
+  const MobileItem = ({ to, icon, activeIcon = icon, onClick }) => (
     <li>
       <NavLink
         to={to}
@@ -222,17 +212,16 @@ export default function Sidebar() {
         rounded-lg
         transition-all
         duration-200
-        ${isActive
+        ${
+          isActive
             ? "bg-surface text-text"
             : "text-muted hover:text-hovertext hover:bg-hoverbg"
-          }
+        }
       `
         }
       >
         {({ isActive }) => (
-          <div className="p-3 rounded-lg">
-            {isActive ? activeIcon : icon}
-          </div>
+          <div className="p-3 rounded-lg">{isActive ? activeIcon : icon}</div>
         )}
       </NavLink>
     </li>
@@ -246,7 +235,6 @@ export default function Sidebar() {
           className="fixed inset-0 z-10"
         />
       )}
-
       {!isMobile ? (
         <aside
           className={`
@@ -282,17 +270,14 @@ export default function Sidebar() {
               className="logo w-10 h-10 min-w-10 min-h-10 object-contain"
             />
           </Link>
-
           <nav className="flex-1">
             <ul className="space-y-1">
               {sidebarItems.map((item) => (
-                <Item
-                  key={item.to}
-                  {...item}
-                />
+                <Item key={item.to} {...item} />
               ))}
             </ul>
-          </nav>        <div className="mt-auto space-y-1">
+          </nav>{" "}
+          <div className="mt-auto space-y-1">
             <NavLink
               to="/profile"
               className={({ isActive }) =>
@@ -305,29 +290,28 @@ export default function Sidebar() {
               p-3
               transition-all
               duration-200
-              ${isActive
+              ${
+                isActive
                   ? "bg-surface text-text"
                   : "text-muted hover:text-hovertext hover:bg-hoverbg"
-                }
+              }
             `
               }
             >
               {({ isActive }) => (
                 <>
                   <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                    <User
-                      size={24}
-                      fill={isActive ? "currentColor" : "none"}
-                    />
+                    <User size={24} fill={isActive ? "currentColor" : "none"} />
                   </div>
 
                   <span
                     className={`
                     overflow-hidden
-                    ${showMore
+                    ${
+                      showMore
                         ? "w-32 opacity-100"
                         : "w-0 opacity-0 group-hover:w-32 group-hover:opacity-100"
-                      }
+                    }
                     transition-all
                     duration-300
                   `}
@@ -365,10 +349,11 @@ export default function Sidebar() {
                 <span
                   className={`
                   overflow-hidden
-                  ${showMore
+                  ${
+                    showMore
                       ? "w-32 opacity-100"
                       : "w-0 opacity-0 group-hover:w-32 group-hover:opacity-100"
-                    }
+                  }
                   transition-all
                   duration-300
                 `}
@@ -447,8 +432,6 @@ export default function Sidebar() {
                   </div>
 
                   <div className="mt-2">
-            
-
                     <button
                       type="button"
                       onClick={logout}
@@ -525,10 +508,11 @@ export default function Sidebar() {
               rounded-lg
               transition-all
               duration-200
-              ${isActive
-                      ? "bg-surface text-text"
-                      : "text-muted hover:text-hovertext hover:bg-hoverbg"
-                    }
+              ${
+                isActive
+                  ? "bg-surface text-text"
+                  : "text-muted hover:text-hovertext hover:bg-hoverbg"
+              }
             `
                   }
                 >
@@ -545,6 +529,7 @@ export default function Sidebar() {
             </ul>
           </nav>
         </aside>
-      )}  </>
+      )}{" "}
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import loginhook from "../assets/loginhook.webp";
 import icon from "../assets/icon.svg";
 import famora from "../assets/famora.svg";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,7 @@ export default function SetupAcc() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, []);
+  }, [setIsMobile]);
 
   const [sending, setSending] = useState(false);
   const [password, setPassword] = useState("");
@@ -221,24 +220,20 @@ export default function SetupAcc() {
                     const birthDate = new Date(selectedDate);
                     const todayDate = new Date();
 
-                    let age = todayDate.getFullYear() - birthDate.getFullYear();
+                    let calculatedAge = todayDate.getFullYear() - birthDate.getFullYear();
 
                     if (
                       todayDate.getMonth() < birthDate.getMonth() ||
                       (todayDate.getMonth() === birthDate.getMonth() &&
                         todayDate.getDate() < birthDate.getDate())
                     ) {
-                      age--;
+                      calculatedAge--;
                     }
 
-                    setAge(age);
+                    setAge(calculatedAge);
                   }
 
-                  if (selectedDate > today) {
-                    setError("Birthday cannot be in the future.");
-                  } else {
-                    setError("");
-                  }
+                 
                 }}
                 className="peer w-full rounded-[22px] border border-[#4b5563] bg-bg px-6 pb-3 pt-8 text-text outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10 mb-3"
                 style={{ colorScheme: "dark" }}

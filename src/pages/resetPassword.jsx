@@ -1,17 +1,12 @@
-import loginhook from "../assets/loginhook.webp";
 import icon from "../assets/icon.svg";
-import meta from "../assets/meta.svg";
 import famora from "../assets/famora.svg";
-import { FaFacebook } from "react-icons/fa";
 import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MobileContext } from "../context/context";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 export default function ResetPass() {
-  const now = new Date();
-  const year = now.getFullYear();
-
+  
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -69,34 +64,34 @@ export default function ResetPass() {
     }
   }
 
- async function handlePasswordChange() {
-  setSending(true);
-  try {
-    const res = await fetch("http://localhost:1111/reset-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token,
-        password: newPassword,
-      }),
-    });
+  async function handlePasswordChange() {
+    setSending(true);
+    try {
+      const res = await fetch("http://localhost:1111/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token,
+          password: newPassword,
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      alert("Password Changed");
-      navigate("/login");
-    } else {
-      alert(data.message);
+      if (res.ok) {
+        alert("Password Changed");
+        navigate("/login");
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setSending(false);
     }
-  } catch (err) {
-    console.log(err);
-  } finally {
-    setSending(false);
   }
-}
 
   return (
     <div className="min-h-screen bg-bg text-white overflow-x-hidden">
@@ -148,7 +143,11 @@ export default function ResetPass() {
               onClick={handleSubmit}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-               {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
+              {sending ? (
+                <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div>
+              ) : (
+                "Next"
+              )}
             </button>
           </div>
         </main>
@@ -227,7 +226,11 @@ export default function ResetPass() {
               onClick={handlePasswordChange}
               className="w-full rounded-full bg-primary py-3 text-base font-semibold text-white transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
             >
-                  {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Continue"}
+              {sending ? (
+                <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div>
+              ) : (
+                "Continue"
+              )}
             </button>
           </div>
         </main>
@@ -235,7 +238,7 @@ export default function ResetPass() {
 
       {!isMobile && (
         <footer className="px-4 py-7">
-          <Footer/>
+          <Footer />
         </footer>
       )}
     </div>

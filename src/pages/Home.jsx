@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MobileContext, UserContext } from "../context/context";
 import Posts from "../components/post";
@@ -12,9 +12,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const { isMobile, setIsMobile } = useContext(MobileContext);
-  const { setUser } = useContext(UserContext);
 
-  
   useEffect(() => {
     const theme = localStorage.getItem("theme");
 
@@ -47,7 +45,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, []);
+  }, [setIsMobile]);
 
   const stories = [
     "https://i.pravatar.cc/150?img=1",
@@ -147,7 +145,7 @@ export default function Home() {
         )}
       </main>
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
     </div>
   );

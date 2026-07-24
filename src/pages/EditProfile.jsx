@@ -4,19 +4,22 @@ import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
-  const [NewUsername, setNewUsername] = useState("");
-  const [NewName, setNewName] = useState("");
-  const [NewPhone, setNewPhone] = useState("");
+  const [newUsername, setNewUsername] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newPhone, setNewPhone] = useState("");
   const [sending, setSending] = useState(false);
   const [popup, setPopup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [Password, setPassword] = useState("");
-  
-const navigate = useNavigate()
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleUpdate = async () => {
     setSending(true);
-    const SessionId = localStorage.getItem("SessionId")
+    if (!password.trim()) {
+      return alert("Enter your password");
+    }
+    const SessionId = localStorage.getItem("SessionId");
     try {
       const response = await fetch("http://localhost:1111/editProfile", {
         method: "POST",
@@ -24,16 +27,17 @@ const navigate = useNavigate()
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-      SessionId: SessionId,
-      Name: NewName,
-      Phone: NewPhone,
-      UserName: NewUsername,
-      Password: Password,
-        }), 
+          SessionId,
+          Name: newName,
+          Phone: newPhone,
+          UserName: newUsername,
+          Password: password,
+        }),
       });
       const data = await response.json();
       if (response.ok) {
         alert(data.message);
+        setPopup(false);
         navigate("/profile");
       } else {
         alert(data.message);
@@ -144,6 +148,7 @@ const navigate = useNavigate()
                   id="newPass"
                   placeholder=" "
                   autoComplete="new-password"
+                  autoFocus
                   value={Password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="peer w-full rounded-[22px] border border-[#4b5563] bg-bg px-6 pb-3 pt-8 text-text outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"
@@ -165,7 +170,8 @@ const navigate = useNavigate()
               </div>
               <button
                 type="button"
-                onClick={()=>handleUpdate()}
+                disabled={sending}
+                onClick={() => handleUpdate()}
                 className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] justify-center flex gap-2 items-center"
               >
                 {sending ? (

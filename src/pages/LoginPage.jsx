@@ -30,7 +30,7 @@ export default function Login() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, []);
+  }, [setIsMobile]);
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -114,7 +114,7 @@ export default function Login() {
         </section>
 
         <section
-          className={`flex min-h-[calc(100vh-120px)] w-full items-center justify-center   px-6 py-24 md:py-10} ${isMobile ? "bg-bg" : "bg-surface"}`}
+          className={`flex min-h-[calc(100vh-120px)] w-full items-center justify-center px-6 py-24 md:py-10 ${isMobile ? "bg-bg" : "bg-surface"}`}
         >
           <form className="w-full max-w-md">
             <h2 className="mb-4 text-left text-lg font-medium">

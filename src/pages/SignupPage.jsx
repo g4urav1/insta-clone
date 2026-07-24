@@ -1,13 +1,9 @@
-import loginhook from "../assets/loginhook.webp";
 import icon from "../assets/icon.svg";
-import meta from "../assets/meta.svg";
 import famora from "../assets/famora.svg";
-import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MailContext, MobileContext } from "../context/context";
-import { ChevronLeftIcon } from "lucide-react";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -25,9 +21,7 @@ export default function Signup() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, [navigate]);
-
-  const year = new Date().getFullYear();
+  }, [setIsMobile]);
 
   const { isMobile, setIsMobile } = useContext(MobileContext);
 
@@ -117,7 +111,11 @@ export default function Signup() {
             }}
             className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
           >
-               {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
+            {sending ? (
+              <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div>
+            ) : (
+              "Next"
+            )}
           </button>
           <button
             type="button"
@@ -140,7 +138,7 @@ export default function Signup() {
 
       {!isMobile && (
         <footer className="px-4 py-7">
-         <Footer/>
+          <Footer />
         </footer>
       )}
     </div>

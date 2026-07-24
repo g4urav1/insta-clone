@@ -1,10 +1,7 @@
 import Sidebar from "../components/Sidebar";
-import pfp from "../assets/Profile.jpg";
-import { postcss } from "autoprefixer";
 import { useContext, useState } from "react";
 import { MobileContext, UserContext } from "../context/context";
 import Nav from "../components/nav";
-import { NavLink } from "react-router-dom";
 import Footer from "../components/Footer";
 import { X } from "lucide-react";
 export default function ProfilePage() {
@@ -26,8 +23,8 @@ export default function ProfilePage() {
     "https://picsum.photos/300?15",
   ];
 
-  const { isMobile, setIsMobile } = useContext(MobileContext);
-  const { user, setUser } = useContext(UserContext);
+  const { isMobile } = useContext(MobileContext);
+  const { user } = useContext(UserContext);
 
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -67,7 +64,7 @@ export default function ProfilePage() {
             className="bg-gray-500/50 text-center w-1/2 py-2 rounded-lg"
             href="edit/profile"
           >
-            <button className=" py-2 ">Edit Profile</button>
+            Edit Profile
           </a>
           <button className="bg-gray-500/50 w-1/2 py-2 rounded-lg">
             Create Post

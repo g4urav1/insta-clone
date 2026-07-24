@@ -1,15 +1,11 @@
-import loginhook from "../assets/loginhook.webp";
 import icon from "../assets/icon.svg";
-import meta from "../assets/meta.svg";
 import famora from "../assets/famora.svg";
-import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MailContext, MobileContext } from "../context/context";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 export default function SignupAuth() {
-  const year = new Date().getFullYear();
   const navigate = useNavigate();
 
   const { isMobile, setIsMobile } = useContext(MobileContext);
@@ -28,9 +24,9 @@ export default function SignupAuth() {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
-  }, [navigate]);
+  }, [setIsMobile]);
 
-  const { mail, setMail } = useContext(MailContext);
+  const { mail } = useContext(MailContext);
   const [code, setCode] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -53,6 +49,8 @@ export default function SignupAuth() {
       if (response.ok) {
         alert("Code verified successfully");
         navigate("/account_setup");
+      } else {
+        alert(data.message);
       }
     } catch (error) {
       console.error(error);
@@ -111,7 +109,11 @@ export default function SignupAuth() {
             }}
             className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] flex gap-2 justify-center items-center"
           >
-              {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Next"}
+            {sending ? (
+              <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div>
+            ) : (
+              "Next"
+            )}
           </button>
           <button
             type="button"
@@ -134,7 +136,7 @@ export default function SignupAuth() {
 
       {!isMobile && (
         <footer className="px-4 py-7 bg-surface">
-         <Footer/>
+          <Footer />
         </footer>
       )}
     </div>

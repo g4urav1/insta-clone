@@ -32,37 +32,43 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  
   const [isMobile, setIsMobile] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
   const [mail, setMail] = useState("");
   const [user, setUser] = useState({});
+  
 
   const validateLogin = async () => {
-      try {
-        const SessionId = localStorage.getItem("SessionId");
-        const response = await fetch("http://localhost:1111/validateLogin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            SessionId,
-          }),
-        });
-  
-        const data = await response.json();
-  
-        setUser(data);
-      } catch (error) {
-        console.error(error);
+    try {
+      const SessionId = localStorage.getItem("SessionId");
+      if (!SessionId) return;
+      const response = await fetch("http://localhost:1111/validateLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          SessionId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Failed to validate login");
+        
       }
-    };
-  
-    useEffect(() => {
-      validateLogin();
-    }, []);
-  
+
+      setUser(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    validateLogin();
+  }, []);
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <MailContext.Provider value={{ mail, setMail }}>
