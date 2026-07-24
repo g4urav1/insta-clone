@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MobileContext } from "../context/context";
 import { Eye, EyeOff } from "lucide-react";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 export default function Login() {
   const year = new Date().getFullYear();
@@ -55,10 +55,9 @@ export default function Login() {
         alert(data.message);
         localStorage.setItem("loggedin", true);
         localStorage.setItem("SessionId", data.SessionId);
-        
+
         navigate("/");
-      }
-      else {
+      } else {
         alert(data.message);
       }
     } catch (error) {
@@ -175,7 +174,11 @@ export default function Login() {
                 onClick={handleLogin}
                 className="w-full rounded-full bg-primary py-3 text-base font-semibold text-text  transition hover:scale-[1.01] active:scale-[0.99] justify-center flex gap-2 items-center"
               >
-                {sending ? <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div> : "Log in"}
+                {sending ? (
+                  <div className="h-5 w-5 animate-spin   rounded-full border-l-[2px] border-b-[1.5px] border-r-[1px] border-text border-t-transparent"></div>
+                ) : (
+                  "Log in"
+                )}
               </button>
 
               <button
@@ -223,7 +226,7 @@ export default function Login() {
 
       {!isMobile && (
         <footer className="px-4 py-7">
-        <Footer/>
+          <Footer />
         </footer>
       )}
     </div>

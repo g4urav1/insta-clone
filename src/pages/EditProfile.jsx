@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Eye, EyeOff, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
   const [NewUsername, setNewUsername] = useState("");
@@ -11,6 +12,7 @@ export default function EditProfile() {
   const [showPassword, setShowPassword] = useState(false);
   const [Password, setPassword] = useState("");
   
+const navigate = useNavigate()
 
   const handleUpdate = async () => {
     setSending(true);
@@ -25,7 +27,7 @@ export default function EditProfile() {
       SessionId: SessionId,
       Name: NewName,
       Phone: NewPhone,
-      Username: NewUsername,
+      UserName: NewUsername,
       Password: Password,
         }), 
       });
@@ -47,7 +49,7 @@ export default function EditProfile() {
   return (
     <div className="text-text bg-bg">
       <Sidebar />
-      <main className="min-h-screen w-2/5  mx-auto p-4 relative">
+      <main className="min-h-screen md:w-2/5  mx-auto p-4 relative">
         <h1 className="text-2xl mb-10">Edit Profile</h1>
         <div className="flex items-center justify-center flex-col bg-surface p-4 rounded-xl">
           <div className="relative mb-5 w-full">
@@ -75,7 +77,6 @@ export default function EditProfile() {
               id="Name"
               placeholder=" "
               autoComplete="Name"
-              autoFocus
               value={NewName}
               onChange={(e) => setNewName(e.target.value)}
               className="peer w-full rounded-[22px] border border-[#4b5563] bg-bg px-6 pb-3 pt-8 text-text outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"
@@ -94,7 +95,6 @@ export default function EditProfile() {
               id="phone"
               placeholder=" "
               autoComplete="phone"
-              autoFocus
               value={NewPhone}
               onChange={(e) => setNewPhone(e.target.value)}
               className="peer w-full rounded-[22px] border border-[#4b5563] bg-bg px-6 pb-3 pt-8 text-text outline-none transition-all duration-200 focus:border-accent focus:ring-4 focus:ring-cyan-400/10"

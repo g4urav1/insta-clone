@@ -9,3 +9,7 @@ export const MailContext = createContext({
     mail: "",
     setMail: () => { }
 });
+export const UserContext = createContext({
+    user: {},
+    setUser: () => { }
+});

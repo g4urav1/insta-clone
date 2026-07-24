@@ -2,9 +2,10 @@ import Sidebar from "../components/Sidebar";
 import pfp from "../assets/Profile.jpg";
 import { postcss } from "autoprefixer";
 import { useContext } from "react";
-import { MobileContext } from "../context/context";
+import { MobileContext, UserContext } from "../context/context";
 import Nav from "../components/nav";
 import { NavLink } from "react-router-dom";
+import Footer from "../components/Footer";
 export default function ProfilePage() {
   const posts = [
     "https://picsum.photos/300?1",
@@ -25,6 +26,7 @@ export default function ProfilePage() {
   ];
 
   const { isMobile, setIsMobile } = useContext(MobileContext);
+  const {user, setUser}= useContext(UserContext)
   return (
     <div className="bg-bg text-text min-h-screen">
       {isMobile && <Nav />}
@@ -33,14 +35,14 @@ export default function ProfilePage() {
       <main className="md:pl-16 md:p-4 mx-auto md:w-4/5 p-2 flex flex-col items-center">
         <div className="flex gap-8 items-center md:w-3/5">
           <img
-            src={pfp}
+            src="https://i.pravatar.cc/150?img=2"
             alt="Profile Picture"
             className="w-28 h-28 rounded-full"
           />
           <div>
             <div>
-              <h2 className="text-xl font-bold">g4urav1_</h2>
-              <p className="text-muted">Gaurav</p>
+              <h2 className="text-xl font-bold">{user.Username}</h2>
+              <p className="text-muted">{user.Name}</p>
             </div>
             <div className="flex gap-2 ">
               <p className="text-text">
@@ -77,6 +79,9 @@ export default function ProfilePage() {
           ))}
         </div>
       </main>
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 }
